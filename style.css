@@ -1,20 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Paleta preta */
+:root {
+    --bg: #ffffff;
+    --primary: #ffffff;
+    --text: #000000;
+    --gray: #aaaaaa;
+    --hover: #666666;
 }
 
 body {
-    background-color: #ffffff;
+    background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
 }
 
+/* NAVBAR */
 nav {
-    background-color: #ffffff;
+    background-color: var(--bg);
     padding: 15px 30px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 
 .nav-bar {
@@ -27,6 +42,7 @@ nav {
     height: 50px;
 }
 
+/* Menu */
 .nav-links {
     list-style: none;
     display: flex;
@@ -36,31 +52,36 @@ nav {
 .nav-links li a {
     text-decoration: none;
     font-weight: 500;
-    color: #111111;
+    color: var(--text);
     transition: color 0.3s ease;
 }
 
 .nav-links li a:hover {
-    color: #818181;
+    color: var(--hover);
 }
 
 /* Search Box */
 .search-box {
     position: relative;
-    width: 300px;
+    width: 250px;
 }
 
 .search-box input {
     width: 100%;
     padding: 8px 40px 8px 15px;
-    border: 2px solid #ccc;
+    border: 2px solid var(--gray);
     border-radius: 50px;
     outline: none;
-    transition: 0.3s;
+    background-color: transparent;
+    color: var(--text);
+}
+
+.search-box input::placeholder {
+    color: var(--gray);
 }
 
 .search-box input:focus {
-    border-color: #111;
+    border-color: var(--primary);
 }
 
 .search-box i {
@@ -68,6 +89,42 @@ nav {
     right: 12px;
     top: 50%;
     transform: translateY(-50%);
-    color: #666;
+    color: var(--gray);
     font-size: 20px;
+}
+
+/* Botão hamburguer */
+.hamburger {
+    display: none;
+    font-size: 28px;
+    color: var(--text);
+    cursor: pointer;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .nav-links {
+        position: absolute;
+        top: 70px;
+        right: -100%;
+        background-color: var(--bg);
+        width: 200px;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        transition: right 0.3s ease;
+    }
+
+    .nav-links.active {
+        right: 30px;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .search-box {
+        display: none;
+    }
 }
